@@ -4,6 +4,7 @@ import io.agileintelligence.ppmt.domain.Project;
 import io.agileintelligence.ppmt.exceptions.ProjectIdException;
 import io.agileintelligence.ppmt.exceptions.ProjectNotFoundException;
 import io.agileintelligence.ppmt.repository.ProjectRepository;
+import org.aspectj.weaver.reflect.IReflectionWorld;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,10 @@ public class ProjectService {
             }
 
             return project;
+    }
+
+    public Iterable<Project> findAllProjects(){
+        return projectRepository.findAll();
     }
 
 
