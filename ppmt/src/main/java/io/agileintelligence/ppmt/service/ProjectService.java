@@ -2,6 +2,7 @@ package io.agileintelligence.ppmt.service;
 
 import io.agileintelligence.ppmt.domain.Project;
 import io.agileintelligence.ppmt.exceptions.ProjectIdException;
+import io.agileintelligence.ppmt.exceptions.ProjectNotFoundException;
 import io.agileintelligence.ppmt.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,17 @@ public class ProjectService {
         }
 
     }
+
+    public Project findProjectByIdentifier(String Id){
+            Project project = projectRepository.findByProjectIdentifier(Id.toUpperCase());
+
+            if(project == null){
+                throw new ProjectNotFoundException("Project not found");
+            }
+
+            return project;
+    }
+
+
 
 }
